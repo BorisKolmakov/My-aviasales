@@ -1,0 +1,9 @@
+@import '../../styles/mixins.scss';
+@import '../../styles/variables.scss';
+
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 20px;
+}
