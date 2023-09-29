@@ -1,1 +1,1 @@
-https://my-aviasales-boriskolmakov-tcwp.vercel.app/
+https://my-aviasales-boriskolmakov.vercel.app/
