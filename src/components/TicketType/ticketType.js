@@ -1,66 +1,36 @@
 import { useSelector, useDispatch } from 'react-redux';
-import propTypes from 'prop-types';
 
-import { setTicketType } from '../../redux/filtersSlice';
+import * as actions from '../../redux/actions/actionCreators';
 
 import classes from './ticketType.module.scss';
 
 function TicketType() {
-  const { cheap, fast, optimal } = useSelector((state) => state.root.filters.types);
-  const { ticketsType } = useSelector((state) => state.root.filters);
+  const { cheap, fast, optimal } = actions;
+  const active = useSelector((state) => state.sortTabReducer.sort);
   const dispatch = useDispatch();
 
   return (
-    <div className={classes.ticketTypes}>
-      <input
-        type="radio"
-        name="radio"
-        className={classes.ticketTypes__radio}
-        id="cheap"
-        onChange={() => dispatch(setTicketType(cheap))}
-        checked={ticketsType === cheap}
-      />
-      <label htmlFor="cheap" className={classes.ticketTypes__label}>
+    <div className={classes.tabs}>
+      <button
+        onClick={() => dispatch(cheap())}
+        className={`${classes.tabs__tab_cheap} ${active === 'cheap' ? classes.tabs__tab_cheap_active : ''}`}
+      >
         Самый дешевый
-      </label>
-      <input
-        type="radio"
-        name="radio"
-        className={classes.ticketTypes__radio}
-        id="fast"
-        onChange={() => dispatch(setTicketType(fast))}
-        checked={ticketsType === fast}
-      />
-      <label htmlFor="fast" className={[classes.ticketTypes__label, classes.bordered].join(' ')}>
+      </button>
+      <button
+        onClick={() => dispatch(fast())}
+        className={`${classes.tabs__tab_fast} ${active === 'fast' ? classes.tabs__tab_fast_active : ''}`}
+      >
         Самый быстрый
-      </label>
-      <input
-        type="radio"
-        name="radio"
-        className={classes.ticketTypes__radio}
-        id="optimal"
-        onChange={() => dispatch(setTicketType(optimal))}
-        checked={ticketsType === optimal}
-      />
-      <label htmlFor="optimal" className={classes.ticketTypes__label}>
+      </button>
+      <button
+        onClick={() => dispatch(optimal())}
+        className={`${classes.tabs__tab_optimal} ${active === 'optimal' ? classes.tabs__tab_optimal_active : ''}`}
+      >
         Оптимальный
-      </label>
+      </button>
     </div>
   );
 }
 
 export default TicketType;
-
-TicketType.propTypes = {
-  cheap: propTypes.string,
-  fast: propTypes.string,
-  optimal: propTypes.string,
-  ticketsType: propTypes.string,
-};
-
-TicketType.defaultProps = {
-  cheap: 'cheap',
-  fast: 'fast',
-  optimal: 'optimal',
-  ticketsType: '',
-};
