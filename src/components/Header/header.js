@@ -1,4 +1,4 @@
-import logo from '../../img/Logo.svg';
+import logo from '../../assets/Logo.svg';
 
 import classes from './header.module.scss';
 

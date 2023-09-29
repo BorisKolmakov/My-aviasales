@@ -1,7 +1,7 @@
 @import '../../styles/mixins.scss';
 @import '../../styles/variables.scss';
 
-.ticketTypes {
+.tabs {
   display: flex;
   border-radius: $border-radius;
   border: 1px solid $border-color;
@@ -10,27 +10,24 @@
 
   @include responsive-to($res-xs) {
     flex-direction: column;
+    width: 100%;
   }
 
-  &__radio {
-    display: none;
-
-    &:checked + .ticketTypes__label {
-      background-color: $blue;
-      color: $white;
-      &:hover {
-        cursor: default;
-      }
-    }
-  }
-
-  &__label {
+  &__tab_cheap,
+  &__tab_fast,
+  &__tab_optimal {
     width: calc(100% / 3);
     background: $white;
     justify-content: center;
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 20px;
     align-items: center;
     display: flex;
     height: 50px;
+    border: 1px solid $border-color;
 
     @include responsive-to($res-xs) {
       width: 100%;
@@ -50,5 +47,34 @@
         border-bottom: 1px solid $border-color;
       }
     }
+  }
+  &__tab_fast,
+  &__tab_optimal {
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+  }
+  &__tab_optimal {
+    border-top-right-radius: $border-radius;
+    border-bottom-right-radius: $border-radius;
+  }
+  &__tab_fast {
+    border-left: 0px solid $border-color;
+    border-right: 0px solid $border-color;
+  }
+
+  &__tab_cheap:hover,
+  &__tab_fast:hover,
+  &__tab_optimal:hover {
+    background: $blue;
+    color: $hover-color;
+    border-color: $blue-lighten;
+  }
+
+  &__tab_cheap_active,
+  &__tab_fast_active,
+  &__tab_optimal_active {
+    background: $blue;
+    color: $hover-color;
+    border-color: $blue-lighten;
   }
 }
